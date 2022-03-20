@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 10px;
+  background-color: rgba(232, 236, 238, 0.87);
+}
+.empForm {
+  background-color: rgba(232, 236, 238, 0.87);
+  border-radius: 10px;
+  width: 100%;
+  height: fit-content;
+  padding: 5px;
+}
+.formLegend {
+  border-radius: 10px;
+  color: rgb(11, 25, 88);
+  padding: 10px 15px;
+  background-color: rgb(202, 195, 209);
+}
+.empForm fieldset {
+  border-radius: 15px;
+  color: blue;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+.imgContainer {
+  width: 130px;
+  height: 155px;
+  border: 1px solid rgba(189, 191, 192, 0.719);
+  background-color: lightgray;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  gap: 3px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 1px 30px -10px rgba(117,101,101,0.75);
+}
+.imgContainer img {
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+.image-holder{
+  width: 100px;
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  margin-top: 3px;
+}
+.imgInput{
+  padding-left: 1x;
+  font-size: 15px;
+
+}
+
+label{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: rgb(97, 96, 96);  
+}
+.radioBtn{
+  display: flex;
+  flex-wrap: nowrap;
+}
+.checkbox{
+  display: flex;
+}
+
+.employee-table {
+  width: 80%;
+  margin: 40px auto;
+  background: rgba( 172, 223, 229, 0.15 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 2.5px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+table.list{
+  text-align: center;
+  width: 100%;
+}
+
+td{
+  
+  text-align: left;
+  padding: 8px 15px;
+}
+
+tr:nth-child(even),table.list thead{
+  background-color: rgb(204,200,200);
+}
+tr:hover{
+  background-color: rgb(155, 164, 165);
+  transform: scale(1.01);
+  box-shadow: 2px 2px 12px rosybrown;
+}
+tbody tr td {
+  text-align: center;
+}
