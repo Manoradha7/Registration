@@ -18,8 +18,8 @@ app.use(bodyParser.json());
 //routes
 app.use('/employee',EmployeeRouter)
 
-const Mongo_URL = 'mongodb://localhost:'
-const PORT = 8000;
+const Mongo_URL = process.env.MONGO_URL;
+const PORT = process.env.PORT;
 
 //create connection to database
 async function createConnection(){

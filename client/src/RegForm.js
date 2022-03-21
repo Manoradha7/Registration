@@ -55,8 +55,7 @@ export function RegForm() {
       validationSchema: formValidationSchema,
       onSubmit: (values) => {
       
-        // console.log(values.profimg)
-        // console.log({...values,profimg:profileImg});
+      
         const updatedvalues={...values,profimg:profileImg}
         Register(updatedvalues);
       },
