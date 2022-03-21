@@ -15,7 +15,7 @@ import {
   FormGroup,
 } from "@mui/material";
 import { EmployeeList } from "./EmployeeList";
-// import axios from "axios";
+import axios from "axios";
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -55,23 +55,39 @@ export function RegForm() {
       validationSchema: formValidationSchema,
       onSubmit: (values) => {
       
-        console.log(values.profimg)
-        console.log({...values,profimg:profileImg});
+        // console.log(values.profimg)
+        // console.log({...values,profimg:profileImg});
         const updatedvalues={...values,profimg:profileImg}
         Register(updatedvalues);
       },
     });
   const Register = async (values) => {
-    console.log(values)
-    await fetch(`${API_URL}/employee`, {
-      method: "POST",
-      body: JSON.stringify(values),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    console.log(values,'values')
+
+    const formData = new FormData();
+    formData.append("fullname",values.fullname);
+    formData.append("profimg", profileImg);
+    formData.append("mobile",values.mobile);
+    formData.append("email",values.email);
+    formData.append('jobtype',values.jobtype);
+    formData.append("dob",values.dob);
+    formData.append("location",values.loation);
+   
+    console.log(formData,'fd')
   
+    axios
+      .post(`${API_URL}/employee`, formData,{
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+      .then((res) => {
+        alert("File Upload success");
+      })
+      .catch((err) => alert("File Upload Error"));
   };
+  
+
   return (
     <div><form className="empForm" onSubmit={handleSubmit} encType='multipart/form-data'>
     <fieldset>
@@ -79,7 +95,7 @@ export function RegForm() {
       <TextField
         id="fullname"
         name="fullname"
-        values={values.fname}
+        values={values.fullname}
         onChange={handleChange}
         onBlur={handleBlur}
         error={errors.fullname && touched.fullname}
@@ -95,7 +111,7 @@ export function RegForm() {
           {profileImg && (
             <div>
               <img
-                alt="not fount"
+                alt="not found"
                 width={"100px"}
                 src={URL.createObjectURL(profileImg)}
               />
@@ -110,7 +126,7 @@ export function RegForm() {
             id="profimg"
             type="file"
             name="profimg"
-            // value={values.profimg}
+            value={values.profileImg}
             className="imgInput"
             onChange={(event) => {
               console.log(event.target.files[0]);
@@ -159,7 +175,7 @@ export function RegForm() {
             <FormControlLabel
               id="radio"
               name="jobtype"
-              value="fulltime"
+              value="FT"
               defaultChecked
               control={<Radio  />}
               label="FT"
@@ -167,14 +183,14 @@ export function RegForm() {
             <FormControlLabel
               id="radio"
               name="jobtype"
-              value="parttime"
+              value="PT"
               control={<Radio />}
               label="PT"
             />
             <FormControlLabel
               id="radio"
               name="jobtype"
-              value="consultant"
+              value="Consultant"
               control={<Radio />}
               label="Consultant"
             />
@@ -190,7 +206,6 @@ export function RegForm() {
         error={errors.dob && touched.dob}
         label="DOB"
         type="date"
-        // defaultValue="yyyy-mm-dd"
         helperText={errors.dob && touched.dob && errors.dob}
         variant="filled"
         InputLabelProps={{ shrink: true }}

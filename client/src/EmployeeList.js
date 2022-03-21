@@ -55,11 +55,11 @@ function EmployeeTable({employee,setEmployee}){
             </tr>
           </thead>
           <tbody >
-          {employee.map(({ fullname,profimg, email, mobile, dob, jobtype,id}, index) => {
+          {employee.map(({ fullname,profimg, email, mobile, dob, jobtype,_id}, index) => {
             return (
               <Employee
-              id={id}
-              key={id}
+              id={_id}
+              key={_id}
               index={index}
               fullname={fullname}
               profimg = {profimg}
@@ -69,9 +69,9 @@ function EmployeeTable({employee,setEmployee}){
               dob={dob}
               deleteButton={
                 <IconButton
-                  aria-label="delete movie"
+                  aria-label="delete employee"
                   onClick={() => {
-                    deleteEmployee(id);
+                    deleteEmployee(_id);
                   }}
                   color="secondary"
                   className="delete-button"
@@ -81,11 +81,11 @@ function EmployeeTable({employee,setEmployee}){
               }
               editButton={
                 <IconButton
-                  aria-label="edit movie"
+                  aria-label="edit employee"
                   style={{ marginLeft: "auto" }}
                   color="error"
                   className="edit-button"
-                  onClick={() => history.push("/employee/edit/" + id)}
+                  onClick={() => history.push("/employee/edit/" + _id)}
                 >
                   <EditIcon />
                 </IconButton>
@@ -114,7 +114,7 @@ function Employee({
 return(
   <tr key={id} >
    <td>{index + 1}</td>
-     <td><img src={profimg} alt='profimg' style={{width:80,height:100}}/></td>
+    <td><img src={profimg} alt={'profimg'}style={{width:80,height:100}}/></td>
      <td>{fullname}</td>
      <td>{email}</td>
      <td>{mobile}</td>

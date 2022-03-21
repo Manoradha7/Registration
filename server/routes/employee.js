@@ -33,7 +33,6 @@ const upload = multer({
 
 router.route('/').post(upload,async(req,res)=>{
     try{
-        console.log(req.body.profimg)
     const data = [{
         fullname : req.body.fullname,
         profimg : req.file.filename,
@@ -46,7 +45,6 @@ router.route('/').post(upload,async(req,res)=>{
     const employee = await client.db('ppa').collection('employee').insertMany(data);
     res.status(200).send({Message:"Employee Detail added Successfully"});
     }catch(err){
-        console.log(err)
       res.status(400).send(err);
     }
 })
@@ -55,7 +53,6 @@ router.route('/').post(upload,async(req,res)=>{
         const empData = await client.db('ppa').collection('employee').find().toArray()
         res.status(200).send(empData)
      }catch(err){
-         console.log(err)
          res.status(400).send(err)
      }
  })
